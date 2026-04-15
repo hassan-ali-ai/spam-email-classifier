@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Spam Detector</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-black min-h-screen flex items-center justify-center text-white">
+
+<div class="w-full max-w-lg p-6">
+
+    <!-- Card -->
+    <div class="glass p-8 shadow-2xl">
+
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold"> AI Spam Detector</h1>
+            <button onclick="toggleTheme()" class="bg-white/20 px-3 py-1 rounded">
+                🌙
+            </button>
+        </div>
+
+        <!-- Form -->
+        <form action="/predict" method="post" onsubmit="showLoader()">
+            <textarea 
+                name="email"
+                rows="5"
+                class="w-full p-4 rounded-lg bg-white/10 border border-white/20 focus:outline-none"
+                placeholder="Paste email content here..."></textarea>
+
+            <button class="mt-4 w-full bg-indigo-600 py-3 rounded-lg hover:bg-indigo-700 transition font-semibold">
+                Analyze Email
+            </button>
+        </form>
+
+        <!-- Loader -->
+        <div id="loader" class="hidden text-center mt-4">
+            <div class="animate-spin h-8 w-8 border-4 border-white border-t-transparent rounded-full mx-auto"></div>
+            <p class="text-sm mt-2">Analyzing with AI...</p>
+        </div>
+
+        <!-- Result -->
+        {% if prediction %}
+            <div class="mt-6 text-center text-xl font-bold 
+                {% if 'Spam' in prediction %} text-red-400 {% else %} text-green-400 {% endif %}">
+                {{ prediction }}
+            </div>
+        {% endif %}
+
+        <!-- Footer -->
+        <div class="mt-6 text-center text-sm text-gray-300">
+            Built by Hassan Ali 
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function showLoader() {
+    document.getElementById("loader").classList.remove("hidden");
+}
+
+function toggleTheme() {
+    document.documentElement.classList.toggle('dark');
+}
+</script>
+
+</body>
+</html>
