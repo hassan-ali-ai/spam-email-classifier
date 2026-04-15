@@ -6,9 +6,9 @@ This is a Machine Learning project that classifies emails as **Spam ❌** or **N
 ---
 
 ## Tech Stack
-- Python 🐍
-- Scikit-learn 🤖
-- Pandas 📊
+- Python 
+- Scikit-learn 
+- Pandas 
 - TF-IDF Vectorization
 
 ---
